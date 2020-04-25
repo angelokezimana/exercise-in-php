@@ -1,10 +1,5 @@
 <?php ob_start(); ?>
 
-<p> 
-    Le nombre des personnages:
-    <?= $characterManager->countCharacter() ?>
-</p>
-
 <?php 
 if(isset($character)) {
     $characters = $characterManager->getList($character->getName());
@@ -22,7 +17,7 @@ else {
         <label for="nameCharacter">Nom:</label>
         <input type="text" name="nameCharacter" id="nameCharacter">
         <input type="submit" value="Cr&eacute;er" name="createCharacter">
-        <input type="submit" value="Enregistrer" name="useCharacter">
+        <input type="submit" value="Utiliser" name="useCharacter">
     </form>
 
     <?php 

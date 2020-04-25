@@ -42,16 +42,6 @@ class CharacterManager
 
     public function isExist($character)
     {
-        if(is_int($character)) {
-            $request = $this->db->PREPARE("SELECT * FROM characters WHERE id=:id");
-            $request->execute(array(
-                ':id'=>$character
-            ));
-
-            $data = $request->fetchAll();
-
-            return (bool)$data;
-        }
         $request = $this->db->PREPARE("SELECT * FROM characters WHERE name=:name");
         $request->execute(array(
             ':name'=>$character
@@ -62,35 +52,16 @@ class CharacterManager
         return (bool)$data;
     }
 
-    /*public function isNameValid($character)
+    public function getOne($character)
     {
-        $request = $this->db->PREPARE("SELECT * FROM characters WHERE nom=:nom");
+        $request = $this->db->PREPARE("SELECT * FROM characters WHERE name=:name");
         $request->execute(array(
-            ':nom'=>$character
+            ':name'=>$character
         ));
 
         $data = $request->fetch();
 
-        return (bool)$data;
-    }*/
-
-
-    public function getOne($character)
-    {
-        if(is_int($character)) {
-            $request = $this->db->PREPARE("SELECT * FROM characters WHERE id=:id");
-            $request->execute(array(
-                ':id'=>$character
-            ));
-
-            return new Character($request->fetch());
-        }
-        $request = $this->db->PREPARE("SELECT * FROM characters WHERE nom=:nom");
-        $request->execute(array(
-            ':nom'=>$character
-        ));
-
-        return new Character($request->fetch());
+        return $data;
     }
 
     public function getList($name)

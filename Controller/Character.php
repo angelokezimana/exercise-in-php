@@ -53,11 +53,11 @@ class Character
 
     public function setName($name)
     {
-        if(!empty($name) && is_string($name)) {
+        if(preg_match("#^[a-zA-Z][a-zA-Z0-9_-]{2,}$#", $name)) {
             $this->name = $name;
         }
         else {
-            throw new Exception("Le nom n'est pas valide");
+            throw new Exception("Le nom ".$name." n'est pas valide !");
         }
     }
 

@@ -19,11 +19,13 @@ $characterManager = new CharacterManager($db);
 
 try {
     if(isset($_GET['actions'])) {
-        if($_GET['actions'] == 'createOrUse') {
+        if($_GET['actions'] == 'createOrUse' && isset($_POST['nameCharacter'])) {
+
+            $character = new Character(array(
+                'name' => $_POST['nameCharacter']
+            ));
+
             if(isset($_POST['createCharacter'])) {
-                $character = new Character(array(
-                    'name' => $_POST['nameCharacter']
-                ));
 
                 if($characterManager->isExist($character->getName())) {
                     unset($character);
@@ -33,6 +35,20 @@ try {
                 $characterManager->add($character);
                 require("View/home.php");
             }
+            elseif(isset($_POST['useCharacter'])) {
+
+                if($characterManager->isExist($character->getName())) {
+                    $character->hydrate($characterManager->getOne($character->getName()));
+                    require("View/home.php");
+                }
+                else {
+                    unset($character);
+                    throw new Exception("Le personnage entré n'existe pas !");
+                }
+            }
+        }
+        else {
+            require("View/home.php");
         }
     }
     else {
@@ -40,5 +56,5 @@ try {
     }
 }
 catch(Exception $e) {
-    die("Erreur: ".$e);
+    die("Erreur: ".$e->getMessage());
 }

@@ -6,6 +6,11 @@
     <title>Game in PHP</title>
 </head>
 <body>
+    <p> 
+        Le nombre des personnages:
+        <?= $characterManager->countCharacter() ?>
+    </p>
+    
     <?= $content ?>
 </body>
 </html>
