@@ -56,5 +56,6 @@ try {
     }
 }
 catch(Exception $e) {
-    die("Erreur: ".$e->getMessage());
+    $error = $e->getMessage();
+    require("View/home.php");
 }
