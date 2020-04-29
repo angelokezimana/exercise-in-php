@@ -7,7 +7,7 @@
 </head>
 <body>
     <p> 
-        Le nombre des personnages:
+        Number of characters:
         <?= $characterManager->countCharacter() ?>
     </p>
     
