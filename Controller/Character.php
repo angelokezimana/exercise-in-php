@@ -5,7 +5,7 @@ class Character
     private $id, $name, $damage;
 
     const MYSELF = 1;
-    const HITTED = 2;
+    const STRUCK = 2;
     const KILLED = 3;
 
     public function __construct(array $data)
@@ -47,7 +47,7 @@ class Character
             $this->id = $id;
         }
         else {
-            throw new Exception("L'id doit être supérieur à 0");
+            throw new Exception("ID must be greater than 0 !");
         }
     }
 
@@ -57,14 +57,12 @@ class Character
             $this->name = $name;
         }
         else {
-            throw new Exception("Le nom ".$name." n'est pas valide !");
+            throw new Exception("The name '".$name."' is not valid !");
         }
     }
 
     public function setDamage($damage)
     {
-        $damage = (int)$damage;
-
         if($damage >= 0 && $damage < 100) {
             $this->damage = $damage;
         }
@@ -72,7 +70,7 @@ class Character
 
     public function hit(Character $character)
     {
-        if($this->id == $character->id) {
+        if($this->id == $character->getId()) {
             return self::MYSELF;
         }
 
@@ -81,11 +79,14 @@ class Character
 
     public function receiveDamage()
     {
-        $this->damage += 5;
+        $damage = (int)$this->damage;
+        $damage += 5;
+        
+        $this->setDamage($damage);
 
         if($this->damage >= 100) {
             return self::KILLED;
         }
-        return self::HITTED;
+        return self::STRUCK;
     }
 }

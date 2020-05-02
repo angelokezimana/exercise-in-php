@@ -1,32 +1,39 @@
 <?php ob_start(); ?>
 
-<?php 
+<?php
+if(isset($error)) {
+    echo $error;
+}
+
+if (isset($info)) {
+    echo $info;
+}
+
 if(isset($character)) {
     $characters = $characterManager->getList($character->getName());
 
     $characterInUSe = new Character($characterManager->getOne($character->getName()));
 
-    echo "<p>My Information:</p>";
+    echo "<p>My Information:</p>
 
-    echo "Name: ".$characterInUSe->getName()."<br>Damage: ".$characterInUSe->getDamage();
+        <p><a href='?logout'>Logout</a></p>
 
-    echo "<p>People to hit:</p>";
+        <p>Name: ".htmlspecialchars($characterInUSe->getName())."<br>Damage: ".$characterInUSe->getDamage()."</p>
+
+        <p>People to hit:</p>";
 
     if(empty($characters)) {
         echo "<p>No one to hit !</p>";
     }
 
-    foreach($characters as $character) {
+    foreach($characters as $oneCharacter) {
         echo "<p>
-            <a href='".$_SERVER['PHP_SELF']."?actions=hit&id=".$character->getId()."'>".$character->getName()."</a>
+            <a href='".$_SERVER['PHP_SELF']."?actions=hit&name=".htmlspecialchars($oneCharacter->getName())."'>".htmlspecialchars($oneCharacter->getName())."</a>
             </p>";
     }
 }
 else {
     
-    if(isset($error)) {
-        echo $error;
-    }
     ?>
 
     <form action="<?= $_SERVER['PHP_SELF'] ?>?actions=createOrUse" method="post">

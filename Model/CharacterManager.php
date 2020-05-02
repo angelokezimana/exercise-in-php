@@ -25,7 +25,7 @@ class CharacterManager
 
     public function edit(Character $character)
     {
-        $request = $this->db->PREPARE("UPDATE characters INTO damage=:damage WHERE id=:id");
+        $request = $this->db->PREPARE("UPDATE characters SET damage=:damage WHERE id=:id");
         $request->execute(array(
             ':damage'=>$character->getDamage(),
             ':id'=>$character->getId()
@@ -47,7 +47,7 @@ class CharacterManager
             ':name'=>$character
         ));
 
-        $data = $request->fetchAll();
+        $data = $request->fetch();
 
         return (bool)$data;
     }
