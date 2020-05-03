@@ -10,9 +10,10 @@ if (isset($info)) {
 }
 
 if(isset($character)) {
-    $characters = $characterManager->getList($character->getName());
+    
+    $characters = $characterController->getCharacters($character);
 
-    $characterInUSe = new Character($characterManager->getOne($character->getName()));
+    $characterInUSe = $characterController->getCharacter($character);
 
     echo "<p>My Information:</p>
 

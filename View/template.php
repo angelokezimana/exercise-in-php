@@ -8,7 +8,7 @@
 <body>
     <p> 
         Number of characters:
-        <?= $characterManager->countCharacter() ?>
+        <?= $characterController->numberCharacters() ?>
     </p>
     
     <?= $content ?>
