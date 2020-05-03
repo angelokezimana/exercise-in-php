@@ -1,12 +1,13 @@
-# Simple exercise in php
-Personal exercise to understand OOP and MVC architecture in PHP
+# About
 
-## How to use it
+This exercise consists in understanding object oriented programming and MVC architecture in PHP.
 
-Before using this small application, make sure that you have the database 'learning_test' which contains the table 'characters'. 
+# How to use it
+
+Before using this small application, make sure that you have installed PHP 7+, MySQL or MariaDB and Apache and you have the database 'learning_test' which contains the table 'characters'. 
 
 First, you create the database 'learning_test', and import the file 'database.sql' into the database 'learning_test'.
 
-## How to contribute
+# How to contribute
 
-If you have an idea, feel free to pull request. 😊
+If you have an idea, feel free to create a pull request. 😊
