@@ -63,7 +63,7 @@ class Character
 
     public function setDamage($damage)
     {
-        if($damage >= 0 && $damage < 100) {
+        if($damage >= 0 && $damage <= 100) {
             $this->damage = $damage;
         }
     }

@@ -47,7 +47,13 @@ try {
         }
         elseif($_GET['actions'] == 'hit' && isset($_GET['name'])) {
             
-            $characterController->hit($character, $_GET['name']);
+            if(isset($character)) {
+
+                $characterController->hit($character, $_GET['name']);
+            }
+            else {
+                throw new Exception("you have to log in to hit someone !");
+            }
         }
         else {
             
